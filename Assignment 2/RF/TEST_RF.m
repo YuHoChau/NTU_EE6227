@@ -13,7 +13,7 @@ testX = test_set.Data;
 testY = test_set.Label;
 
 % Parameters
-ModelParameters.nTree = 500;                            % Number of trees [int]
+ModelParameters.nTree = 100;                            % Number of trees [int]
 ModelParameters.mtry = round(sqrt(size(trainX,2)));     % Number of features to sample [int]
 
 
@@ -22,6 +22,12 @@ ModelParameters.mtry = round(sqrt(size(trainX,2)));     % Number of features to 
 mtry_range = 1:size(trainX,2);
 
 best_acc = 0;   % Initialisation
+
+pVal = 1 : 1 : numel(mtry_range);
+kVal = 1 : 1 : 4;
+
+pLen = length(pVal);
+kLen = length(kVal);
 
 % Requried for consistency
 s = RandStream('mcg16807','Seed',0);
